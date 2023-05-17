@@ -12,6 +12,7 @@ public class ArrayTasks {
      */
     public String[] seasonsArray() {
         String [] seasons = {"winter", "spring", "summer", "autumn"};
+        return seasons;
     }
 
     /**
@@ -31,6 +32,7 @@ public class ArrayTasks {
             number[j] = i;
             i++;
         }
+        return  number;
 
     }
 
@@ -47,7 +49,7 @@ public class ArrayTasks {
         for(int i = 0; i<arr.length; i++){
             sum = sum + arr[i];
         }
-        System.out.println(sum);
+        return sum;
 
     }
 
@@ -61,6 +63,7 @@ public class ArrayTasks {
      * arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
+
         if (number <= arr.length){
             for (int i = 0; i < arr.length; i++){
                 if(arr[i] == number){
@@ -71,6 +74,7 @@ public class ArrayTasks {
         } else {
             return -1;
         }
+
 
     }
 
@@ -129,7 +133,6 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        int [][] sorted;
 
         boolean iSorted = false;
         while (!iSorted) {
@@ -155,13 +158,14 @@ public class ArrayTasks {
 
                 if (i < i - 1) {
                     int temp2 = arr[i][];
-                    arr[i] = arr[i - 1][];
+                    arr[i][] = arr[i - 1][];
                     arr[i - 1][] = temp2;
 
                     iSorted = false;
                 }
             }
         }
+        return arr;
 
     }
 }
