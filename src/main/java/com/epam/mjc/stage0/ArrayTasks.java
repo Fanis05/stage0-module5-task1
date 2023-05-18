@@ -26,13 +26,14 @@ public class ArrayTasks {
      * length = 5  -> [1, 2, 3, 4, 5]
      */
     public int[] generateNumbers(int length) {
-        int [] number = new int [6];
-        int i = 1;
-        for (int j = 0; j<length; j++){
-            number[j] = i;
-            i++;
-        }
-        return  number;
+
+            int[] number = new int[length];
+            int i = 1;
+            for (int j = 0; j < length; j++) {
+                number[j] = i;
+                i++;
+            }
+            return number;
 
     }
 
@@ -63,19 +64,14 @@ public class ArrayTasks {
      * arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
-
-        if (number <= arr.length){
-            for (int i = 0; i < arr.length; i++){
+        int index = -1;
+        for (int i = 0; i < arr.length; i++){
                 if(arr[i] == number){
-                    return i;
+                    index = i;
                     break;
                 }
             }
-        } else {
-            return -1;
-        }
-
-
+        return index;
     }
 
     /**
@@ -110,14 +106,22 @@ public class ArrayTasks {
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        int [] positive = new int[arr.length];
-        int number = 0;                                             //number of element new array
-
+        int [] temp = new int[arr.length];                                //create temprary array
+        int [] positive;
+        int number = 0;
+        int posArrLength = 0;                       //length of possitive array
         for (int i =0; i< arr.length; i++){
             if (arr[i]>0){
-                positive[number] = arr[i];
+
+                temp[number] = arr[i];
+                number++;
+                posArrLength++;
             }
+
         }
+        positive = new int[posArrLength];
+        System.arraycopy(temp, 0, positive, 0, posArrLength);
+
         return positive;
 
     }
@@ -133,39 +137,21 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-
-        boolean iSorted = false;
-        while (!iSorted) {
-            iSorted = true;
-
-            for (int i = 1; i <= arr.length; i++) {                 //sorted 1st
-
-                boolean jSorted = false;                          // condition for check array sorted
-                while (!jSorted) {
-                    jSorted = true;
-                    for (int j = 1; j <= arr[i].length; j++) {          //sort 2nd
-
-                        if (j < j - 1) {
-                            int temp = arr[i][j];
-                            arr[i][j] = arr[i][j - 1];
-                            arr[i][j - 1] = temp;
-
-                            jSorted = false;
+        int swap;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                for (int k = 0; k < arr.length; k++) {
+                    for (int l = 0; l < arr[k].length; l++) {
+                        if (arr[i][j] <= arr[k][l]) {
+                            swap = arr[i][j];
+                            arr[i][j] = arr[k][l];
+                            arr[k][l] = swap;
                         }
-
                     }
-                }
-
-                if (i < i - 1) {
-                    int temp2 = arr[i][];
-                    arr[i][] = arr[i - 1][];
-                    arr[i - 1][] = temp2;
-
-                    iSorted = false;
                 }
             }
         }
         return arr;
-
     }
+
 }
