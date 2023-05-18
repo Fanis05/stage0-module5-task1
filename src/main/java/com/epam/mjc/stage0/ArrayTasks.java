@@ -137,21 +137,60 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        int swap;
+ /*       int temp;                                           //for change elements
+        int [] temprArray;                      // for change array
+
+        for(int i = 0; i<arr.length; i++) {
+            for (int j = 0; j<arr[i].length; j++) {
+                if(j+1 < j){
+                    temp = arr[i][j+1];                 //      \
+                    arr[i][j+1] = arr[i][j];            //       > sorting second-dimentional array
+                    arr[i][j] = temp;                   //      /
+                }
+            }
+
+            if(i+1 < i){
+                temprArray = arr[i+1];                  // sorted first-dimention array
+                arr [i+1] = arr[i];
+                arr[i] = temprArray;
+            }
+        }
+        return arr;
+    }
+*/
+
+        int[][] result = new int[arr.length][1];
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                for (int k = 0; k < arr.length; k++) {
-                    for (int l = 0; l < arr[k].length; l++) {
-                        if (arr[i][j] <= arr[k][l]) {
-                            swap = arr[i][j];
-                            arr[i][j] = arr[k][l];
-                            arr[k][l] = swap;
-                        }
+            result[i][0] = arr[i].length;
+            for (int k = 0; k < arr[i].length; k++) {
+                for (int j = k + 1; j < arr[i].length; j++) {
+                    if (arr[i][k] > arr[i][j]) {
+                        int tmp = arr[i][k];
+                        arr[i][k] = arr[i][j];
+                        arr[i][j] = tmp;
                     }
                 }
             }
         }
-        return arr;
+        for (int i = 0; i < result.length; i++) {
+            for (int j = i + 1; j < result.length; j++) {
+                if (result[i][0] > result[j][0]) {
+                    int tmp = result[i][0];
+                    result[i][0] = result[j][0];
+                    result[j][0] = tmp;
+                }
+            }
+        }
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (result[i][0] == arr[j].length) {
+                    result[i] = arr[j];
+                    arr[j] = new int[0];
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
 }
